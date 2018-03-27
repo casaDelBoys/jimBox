@@ -17,7 +17,6 @@ class CreateExercisesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('body_part');
-            $table->string('category');
             $table->text('description');
             $table->timestamps();
         });
