@@ -17,8 +17,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('exercises', 'ExerciseController@index');
-Route::get('exercises/{exercise}', 'ExerciseController@show');
-Route::post('exercises', 'ExerciseController@store');
-Route::put('exercises/{exercise}', 'ExerciseController@update');
-Route::delete('exercises/{exercise}', 'ExerciseController@delete');
+Route::prefix('v1')->group(function () {
+    Route::get('exercises', 'ExerciseController@index');
+    Route::get('exercises/{exercise}', 'ExerciseController@show');
+    Route::post('exercises', 'ExerciseController@store');
+    Route::put('exercises/{exercise}', 'ExerciseController@update');
+    Route::delete('exercises/{exercise}', 'ExerciseController@delete');
+});
