@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Routine extends Model
 {
-    protected $fillable = ['name', 'elapsed_time', 'total_weight'];
+    protected $fillable = ['user_id', 'name'];
 
     public function user()
     {
-        return $this->belongsTo('App/User');
+        return $this->belongsTo('App\User');
     }
 
     public function exercises()
     {
-        return $this->hasMany('App/Exercise');
+        return $this->hasMany('App\Exercise');
     }
 }

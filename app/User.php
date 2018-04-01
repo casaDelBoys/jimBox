@@ -29,6 +29,6 @@ class User extends Authenticatable
 
     public function routines()
     {
-        return $this->hasMany('App/Routine');
+        return $this->hasMany('App\Routine');
     }
 }

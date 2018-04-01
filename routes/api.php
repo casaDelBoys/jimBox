@@ -23,4 +23,10 @@ Route::prefix('v1')->group(function () {
     Route::post('exercises', 'ExerciseController@store');
     Route::put('exercises/{exercise}', 'ExerciseController@update');
     Route::delete('exercises/{exercise}', 'ExerciseController@delete');
+
+    Route::get('routines', 'RoutinesController@index');
+    Route::get('routines/{routine}', 'RoutinesController@show');
+    Route::post('routines', 'RoutinesController@store');
+    Route::put('routines/{routine}', 'RoutinesController@update');
+    Route::delete('routines/{routine}', 'RoutinesController@delete');
 });
