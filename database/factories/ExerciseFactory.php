@@ -16,7 +16,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Exercise::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
-        'body_part' => $faker->randomElement(['chest', 'arms', 'shoulders']),
-        'description' => $faker->sentence
+        'description' => $faker->sentence,
+        'image_path' => "https://fakeimg.pl/440x320/282828/eae0d0/?retina=1",
     ];
 });
