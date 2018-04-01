@@ -47,3 +47,5 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+#PhpStorm
+.idea/workspace.xml
