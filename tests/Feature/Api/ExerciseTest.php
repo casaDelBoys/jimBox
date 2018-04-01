@@ -14,11 +14,12 @@ class ExerciseTest extends TestCase
     {
         $body = [
             'name' => 'bench press',
-            'body_part' => 'chest',
             'description' => 'a chest movement',
+            'image_path' => 'http://google.com/images/HSioxhasJ',
         ];
 
-        $this->json('POST', '/api/exercises', $body)
+
+        $this->json('POST', '/api/v1/exercises', $body)
             ->assertStatus(201);
     }
 
@@ -28,35 +29,36 @@ class ExerciseTest extends TestCase
 
         $body = [
             'name' => 'bench press',
-            'body_part' => 'chest',
             'description' => 'a chest movement',
+            'image_path' => 'http://google.com/images/HSioxhasJ',
         ];
 
-        $this->json('PUT', '/api/exercises/' . $exercise->id, $body)
+        $this->json('PUT', '/api/v1/exercises/' . $exercise->id, $body)
             ->assertStatus(200)
-            ->assertJson([
-                'name' => 'bench press',
-                'body_part' => 'chest',
-                'description' => 'a chest movement',
-            ]);;
+            ->assertJsonFragment([
+                "id" => 1,
+                "name" => "bench press",
+                "description" => "a chest movement",
+                "image_path" => "http://google.com/images/HSioxhasJ",
+            ]);
     }
 
     public function testExerciseAreListedCorrectly()
     {
         $exercise = factory(Exercise::class)->create([
             'name' => 'bench press',
-            'body_part' => 'chest',
             'description' => 'a chest movement',
+            'image_path' => 'http://google.com/images/HSioxhasJ',
         ]);
 
-        $response = $this->call('GET', 'api/exercises');
+        $response = $this->call('GET', 'api/v1/exercises');
         $this->assertEquals(200, $response->status());
 
         $exercises = $response->json();
 
         $this->assertEquals(1, $exercises[0]['id']);
         $this->assertEquals('bench press', $exercises[0]['name']);
-        $this->assertEquals('chest', $exercises[0]['body_part']);
+        $this->assertEquals('http://google.com/images/HSioxhasJ', $exercises[0]['image_path']);
         $this->assertEquals('a chest movement', $exercises[0]['description']);
     }
 
@@ -64,7 +66,7 @@ class ExerciseTest extends TestCase
     {
         $exercise = factory(Exercise::class)->create();
 
-        $this->json('DELETE', 'api/exercises/' . $exercise->id, [])
+        $this->json('DELETE', 'api/v1/exercises/' . $exercise->id, [])
         ->assertStatus(204);
     }
 }

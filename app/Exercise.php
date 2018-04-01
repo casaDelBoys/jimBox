@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exercise extends Model
 {
-    protected $fillable = ['name', 'body_part', 'category', 'description'];
+    protected $fillable = ['name', 'description', 'image_path'];
 }
